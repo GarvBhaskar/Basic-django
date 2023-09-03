@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block content %}
+{% if name %}
+<h1>Doughnut how to make</h1><h2> by {{ name }}</h2>
+{% else %}
+<h1>Doughnut how to make</h1>
+{% endif %}
+
+<p>This is a reference photo and we will make it alike to it.</p>
+<img src='doughnut1.jpeg' alt="Doughnut">
+{% endblock content %}
