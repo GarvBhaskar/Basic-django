@@ -1,0 +1,45 @@
+{% extends 'main.html'%}
+{% block content %}
+<div class="room-container">
+    <div>
+    <h2>Topic-</h2>
+    <h3>{{topics.name}}</h3>
+    <p>{{topic.description}}</p>
+    <hr>
+    <span>@{{topics.host.username}}</span>
+    <hr>
+    <div class="comment-wrapper">
+        <h3>Conversation</h3>
+        <hr>
+        {% for question in questions %}
+        <div>
+            {% if request.user == question.user %}
+            <a href="{% url 'deletequestion' question.id %}">Delete</a>
+            {%endif%}
+            <small>@{{question.user}} {{question.created}} {{question.created|timesince}} ago</small>
+            <p>{{question.body}}</p>
+            <hr>
+        </div>
+
+        {% endfor %}
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="comment-form">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="body" placeholder="Enter your questions/answer" />
+        </form>
+    </div>
+    {%endif%}
+</div>
+<div>
+    <h3>Participants</h3>
+    <hr>
+    {% for user in participants %}
+    <div>
+        <p>@{{user.username}}</p>
+    </div>
+    {%endfor%}
+</div>
+</div>
+{% endblock content%}

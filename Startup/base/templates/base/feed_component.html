@@ -1,0 +1,23 @@
+
+<hr class="section-separator">
+<div class="topics-feed" >
+    {% for t in topics %}
+    <div class="topic-card" >
+        
+        <a class="host-link" href="{% url 'profile' t.host.id%}">@{{t.host.username}}</a>
+        <h4 class="topic-title">{{ t.id }}= <a href="{% url 'room' t.id %}" class="topic-name">{{ t.name }}</a></h4>
+        <small class="room-name">{{t.room.name}}</small>
+        {% if request.user == t.host %}
+        <div class="edit-buttons">
+            <a href="{% url 'update_room' t.id%}" class="edit-link">
+                <h2>Edit</h2>
+            </a>
+            <a href="{% url 'delete_room' t.id%}" class="delete-link">
+                <h2>Delete</h2>
+            </a>
+        </div>
+        {% endif%}
+        <hr class="item-separator">
+    </div>
+    {% endfor %}
+</div>

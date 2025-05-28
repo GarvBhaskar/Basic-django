@@ -1,0 +1,22 @@
+
+<div class="topics-section">
+    <h1>Home Page</h1>
+<div>
+    <h3>Browse Topics</h3>
+    <hr class="activity-separator">
+</div>
+<div>
+    <a href="{% url 'home' %}" class="topic-link">
+        All
+    </a>
+</div>
+{% for r in room %}
+<div>
+    <hr>
+    <a href="{%url 'home' %}?q={{r.name}}" class="topic-link">
+        {{r}}
+    </a>
+    
+</div>
+{% endfor %}
+</div>

@@ -1,0 +1,20 @@
+<div class="recent-activities">
+<h3>Recent Activity</h3>
+<hr class="activity-separator">
+{% for message in room_messages %}
+<div class="activity-item">
+    <div class="activity-info">
+            <small class="activity-user">@{{message.user}}</small>
+            <small class="activity-time">{{message.created|timesince}} ago</small>
+        </div>
+    <small class="activity-room">Replied to "{{message.room}}"</small>
+    <p class="activity-text">{{message}}</p>
+    {% if request.user == message.user %}
+    <div class="activity-actions">
+    <a href="{% url 'deletequestion' message.id %}" class="activity-delete">Delete</a>
+    </div>
+    <hr class="activity-item-separator">
+    {%endif%}
+</div>
+{% endfor %}
+</div>

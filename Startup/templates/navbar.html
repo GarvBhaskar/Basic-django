@@ -1,0 +1,19 @@
+{% load static %}
+<div class="navbar">
+    <a href="/" class="navbar-logo">
+        <h1><img src="{% static 'images/logo.png'%}" class="resized-image"></h1>
+    </a>
+    <form method="GET" action="{% url 'home' %}" class="search-form">
+        <input type="text" name="q" placeholder="Search Rooms" class="search-input" />
+    </form>
+    <div class="auth-links">
+        {% if request.user.is_authenticated %}
+        <p><strong>Hello {{request.user}}</strong></p>
+        <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <p><strong>Welcome Guest</strong></p>
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</div>
+<hr class="navbar-separator">

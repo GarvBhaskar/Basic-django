@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{%load static %}
+{% block content %}
+<div class="profile-container">
+    <!-- Profile Header Section -->
+    <div class="profile-header">
+        <div class="avatar-section">
+            <img src="{% static 'images/default-avatar.png' %}" alt="{{user.username}}" class="profile-avatar">
+            <h1>{{user.username}}</h1>
+            <p class="member-since">Member since {{user.date_joined|date:"F Y"}}</p>
+        </div>
+        <div class="profile-stats">
+            <div class="stat-box">
+                <span class="stat-number">{{rooms.count}}</span>
+                <span class="stat-label">Rooms Created</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">{{messages.count}}</span>
+                <span class="stat-label">Messages</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="profile-grid">
+        <!-- Left Column - User Info -->
+        <div class="profile-sidebar">
+            <div class="user-bio">
+                <h3>About Me</h3>
+                {% if user.profile.bio %}
+                    <p>{{user.profile.bio}}</p>
+                {% else %}
+                    <p class="empty-bio">No bio yet...</p>
+                {% endif %}
+            </div>
+            {% include 'base/topic_filter.html' %}
+        </div>
+
+        <!-- Middle Column - Main Content -->
+        <div class="profile-content">
+            <h2 class="section-title">My Rooms</h2>
+            {% include 'base/feed_component.html' %}
+        </div>
+
+        <!-- Right Column - Activity -->
+        <div class="profile-activity">
+            <h2 class="section-title">Recent Activity</h2>
+            {% include 'base/activity_component.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

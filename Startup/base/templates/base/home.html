@@ -1,0 +1,26 @@
+{%extends 'main.html'%}
+{%block content%}
+<div class="container">
+
+    <div class="topic-filter">
+        {% include 'base/topic_filter.html'%}
+    </div>
+    <div class="main-content" style="text-align: left;">
+        <hr class="section-separator">
+        <div class="create-room-link">
+            <a href="{% url 'create_room' %}">
+                Create Room
+            </a>
+        </div>
+        <p class="room-count" >
+        Total {{tcount}} rooms Available</p>
+        <br>
+        {% include 'base/feed_component.html'%}
+
+
+    </div>
+    <div class="recent-activity">
+        {% include 'base/activity_component.html'%}
+    </div>
+</div>
+{% endblock content%}
